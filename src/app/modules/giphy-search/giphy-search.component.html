@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="row mb-5">
+    <div class="col-lg-8 mx-auto">
+      <div class="bg-white p-5 rounded">
+        <form>
+          <div class="row mb-4">
+            <div class="form-group col-md-9">
+              <div>
+                <tag-input [(ngModel)]="enteredTags" name="enteredTags">
+                  <tag-input-dropdown
+                    [showDropdownIfEmpty]="true"
+                    [dynamicUpdate]="false">
+                  </tag-input-dropdown>
+                </tag-input>
+              </div>
+            </div>
+            <div class="form-group col-md-3">
+              <button type="submit" class="btn btn-primary rounded-pill btn-block shadow-sm"
+                      [disabled]="!enteredTags || enteredTags.length === 0"
+                      (click)="onSearch()">Search Giphy</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" *ngIf="imageObservable$ | async as giphyImages">
+    <div class="row imagetiles">
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 image-container"
+           *ngFor="let giphyImage of giphyImages | paginate: { itemsPerPage: 9, currentPage: page }">
+        <img src="{{giphyImage}}" class="img-responsive image-container-image">
+      </div>
+    </div>
+
+    <div class="row" *ngIf="giphyImages.length > 0; else NoResult">
+      <div class="list">
+        <pagination-controls (pageChange)="page = $event"></pagination-controls>
+      </div>
+    </div>
+    <ng-template #NoResult>
+      <div class="row">
+        <p>No result found</p>
+      </div>
+    </ng-template>
+</div>
+
+
+
