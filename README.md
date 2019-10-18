@@ -2,7 +2,16 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.9.
 
+# Project Spec
+
+This project permits the user to search for giphy animated (mp4) images using multi tag search.
+
+
 ## Development server
+
+Run npm start to start the server.
+
+Run npm test to run the unit test.
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
