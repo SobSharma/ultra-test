@@ -6,7 +6,7 @@
           <div class="row mb-4">
             <div class="form-group col-md-9">
               <div>
-                <tag-input [(ngModel)]="enteredTags" name="enteredTags">
+                <tag-input [(ngModel)]="enteredTags" name="enteredTags" [maxItems]="maxNumberOfTags">
                   <tag-input-dropdown
                     [showDropdownIfEmpty]="true"
                     [dynamicUpdate]="false">
@@ -30,7 +30,10 @@
     <div class="row imagetiles">
       <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 image-container"
            *ngFor="let giphyImage of giphyImages | paginate: { itemsPerPage: 9, currentPage: page }">
-        <img src="{{giphyImage}}" class="img-responsive image-container-image">
+        <video controls (click)="toggleVideo()" #videoPlayer class="embed-responsive img-responsive image-container-video">
+          <source src="{{giphyImage}}" type="video/mp4" />
+          Browser not supported
+        </video>
       </div>
     </div>
 

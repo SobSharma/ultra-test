@@ -35,13 +35,29 @@ describe('GiphySearchComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create component', () => {
     expect(component).toBeTruthy();
   });
 
   it('should contain search Giphy Button', async(() => {
     const nativeElement = fixture.debugElement.nativeElement;
     expect(nativeElement.querySelector('.btn btn-primary')).toBeDefined();
+  }));
+
+  it('search button should be disabled if no tags are entered', async(() => {
+    fixture.detectChanges();
+    component.enteredTags = [];
+    fixture.detectChanges();
+    const btn = fixture.debugElement.nativeElement.querySelector('button');
+    expect(btn.disabled).toBeTruthy();
+  }));
+
+  it('search button should be enabled if tags are entered', async(() => {
+    fixture.detectChanges();
+    component.enteredTags = ['test'];
+    fixture.detectChanges();
+    const btn = fixture.debugElement.nativeElement.querySelector('button');
+    expect(btn.disabled).toBeFalsy();
   }));
 
 
